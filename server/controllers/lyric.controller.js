@@ -1,4 +1,4 @@
-const { Pirate } = require("../models/pirate.model");
+const { Lyric } = require("../models/lyric.model");
 
 module.exports.index = (req, res)=>{
     res.json({
@@ -7,31 +7,31 @@ module.exports.index = (req, res)=>{
 }
 
 module.exports.findAll = (req, res)=>{
-    Pirate.find({})
-        .then(pirates => res.json(pirates))
+    Lyric.find({})
+        .then(lyrics => res.json(lyrics))
         .catch(err => res.json(err));
 }
 
 module.exports.findById =(req, res)=>{
-    Pirate.findOne({_id: req.params.id})
-        .then(pirate => res.json(pirate))
+    Lyric.findOne({_id: req.params.id})
+        .then(lyric => res.json(lyric))
         .catch(err => res.json(err));
 }
 
 module.exports.create = (req, res) =>{
-    Pirate.create(req.body)
-        .then(pirate => res.json(pirate))
+    Lyric.create(req.body)
+        .then(lyric => res.json(lyric))
         .catch(err => res.status(400).json(err));
 }
 
 module.exports.delete = (req, res) =>{
-    Pirate.deleteOne({_id: req.params.id})
+    Lyric.deleteOne({_id: req.params.id})
         .then(r => res.json(r))
         .catch(err => res.json(err));
 }
 
 module.exports.update = (req, res) =>{
-    Pirate.updateOne({_id: req.params.id}, req.body, {new:true, runValidators: true})
+    Lyric.updateOne({_id: req.params.id}, req.body, {new:true, runValidators: true})
         .then(r => res.json(r))
         .catch(err => res.status(400).json(err));
 }
