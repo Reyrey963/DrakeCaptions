@@ -30,7 +30,7 @@ module.exports.create = (req, res) =>{
                     .catch(err => res.status(400).json(err));
             }else{
                 //If lyric is already in the database then update the current one
-                Lyric.findOneAndUpdate({lyric: lyric}, req.body, {new:true, runValidators:true})
+                Lyric.findOneAndUpdate({lyric: lyric}, req.body, {new:true, runValidators:true, useFindAndModify: false})
                     .then(r => res.json(r))
                     .catch(err => res.status(400).json(err));
             }
