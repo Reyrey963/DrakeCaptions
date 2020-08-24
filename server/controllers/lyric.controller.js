@@ -19,9 +19,22 @@ module.exports.findById =(req, res)=>{
 }
 
 module.exports.create = (req, res) =>{
-    Lyric.create(req.body)
-        .then(lyric => res.json(lyric))
-        .catch(err => res.status(400).json(err));
+    //Check if lyric is already in the database
+    const lyric = req.body.lyric;
+    Lyric.find({lyric: lyric})
+        .then(response => {
+            //If lyric does not exist then create it
+            if(response.length == 0){
+                Lyric.create(req.body)
+                    .then(lyric => res.json(lyric))
+                    .catch(err => res.status(400).json(err));
+            }else{
+                //If lyric is already in the database then update the current one
+                Lyric.findOneAndUpdate({lyric: lyric}, req.body, {new:true, runValidators:true})
+                    .then(r => res.json(r))
+                    .catch(err => res.status(400).json(err));
+            }
+        })
 }
 
 module.exports.delete = (req, res) =>{
