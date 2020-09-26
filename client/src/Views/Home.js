@@ -6,7 +6,7 @@ const Home = (props) => {
     return ( 
         <div className="container">
             <div className="row my-5">
-                <ImageBox/>
+            <ImageBox/>
             </div>
         </div>
      );
