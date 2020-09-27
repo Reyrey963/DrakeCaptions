@@ -1,6 +1,7 @@
 const LyricController = require('../controllers/lyric.controller');
 
 module.exports = function(app){
+    app.get('/api/lyrics/getlabels', LyricController.getLabels);
     //Test to see if the server is working
     app.get('/api', LyricController.index);
     //Create a lyric
@@ -13,4 +14,5 @@ module.exports = function(app){
     app.put('/api/lyrics/:id', LyricController.update);
     //Find a lyric by ID
     app.get('/api/lyrics/:id', LyricController.findById);
+    
 }
