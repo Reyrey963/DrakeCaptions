@@ -49,20 +49,3 @@ module.exports.update = (req, res) =>{
         .catch(err => res.status(400).json(err));
 }
 
-module.exports.getLabels = async (req, res) =>{
-    console.log("here");
-    try{
-        const vision = require('@google-cloud/vision');
-        const client = new vision.ImageAnnotatorClient();
-        const [result] = await client.labelDetection('./boys-drinking.jpg');
-        client.labelDetection()
-        const labels = result.labelAnnotations;
-        console.log(labels);
-        res.json(labels);
-    }
-    catch(e){
-        console.log(e);
-        res.json(e);
-    }
-    
-}
